@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+[project]
+name = "fluxen"
+version = "0.1.0"
+description = "Multi-model terminal coding agent with approval-gated tools"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = ["textual>=1.0,<8", "litellm>=1.50,<2", "platformdirs>=4,<6", "pyyaml>=6,<7"]
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23"]
+[project.scripts]
+fluxen = "fluxen.cli:main"
+[tool.hatch.build.targets.wheel]
+packages = ["fluxen"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
