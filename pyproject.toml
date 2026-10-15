@@ -1,20 +1,58 @@
 [build-system]
 requires = ["hatchling>=1.25"]
 build-backend = "hatchling.build"
+
 [project]
 name = "fluxen"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Multi-model terminal coding agent with approval-gated tools"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Majd", email = "majd.slmt@gmail.com" }]
+keywords = ["ai", "agent", "coding-agent", "llm", "litellm", "claude", "openai", "codex", "tui", "textual"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development",
+]
 dependencies = ["textual>=1.0,<8", "litellm>=1.50,<2", "platformdirs>=4,<6", "pyyaml>=6,<7"]
+
 [project.optional-dependencies]
-dev = ["pytest>=8", "pytest-asyncio>=0.23"]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff>=0.6", "mypy>=1.10"]
+
+[project.urls]
+Homepage = "https://github.com/majdslmt/Fluxen"
+Issues = "https://github.com/majdslmt/Fluxen/issues"
+
 [project.scripts]
 fluxen = "fluxen.cli:main"
+
+[tool.hatch.version]
+path = "fluxen/__init__.py"
+
 [tool.hatch.build.targets.wheel]
 packages = ["fluxen"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "ASYNC"]
+ignore = ["ASYNC109", "ASYNC221"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true

@@ -11,3 +11,7 @@ dist/
 !.env.example
 .coverage
 .uv-cache/
+.mypy_cache/
+.DS_Store
+# Local patch files
+*.patch
